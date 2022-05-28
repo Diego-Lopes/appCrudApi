@@ -14,7 +14,7 @@ export interface Cliente {
 export class ClienteService {
   private url = 'http://localhost/apiAppCrud/apiCliente';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll() {
     return this.http.get<[Cliente]>(this.url);
@@ -26,5 +26,9 @@ export class ClienteService {
 
   create(cliente: Cliente) {
     return this.http.post(this.url, cliente);
+  }
+
+  update(cliente: Cliente, id: any) {
+    return this.http.put(this.url + '?id' + id, cliente);
   }
 }
