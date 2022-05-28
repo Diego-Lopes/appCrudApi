@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-button slot="end" (click)="fecharModal()">fechar</ion-button>
-    <ion-title>Cadastrar Produto</ion-title>
+    <ion-title>{{atualizar ? 'Editar Produto':'Cadastrar Produto'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,12 +9,17 @@
   <form #f="ngForm" (ngSubmit)="enviarFormulario(f)">
     <ion-item>
       <ion-label position="floating">Descrição</ion-label>
-      <ion-input ngModel name="descricao"></ion-input>
+      <ion-input
+        [(ngModel)]="dadosProduto.descricao"
+        name="descricao"
+      ></ion-input>
     </ion-item>
     <ion-item>
       <ion-labe position="floating">Valor</ion-labe>
-      <ion-input ngModel name="valor"></ion-input>
+      <ion-input [(ngModel)]="dadosProduto.valor" name="valor"></ion-input>
     </ion-item>
-    <ion-button fill="outline" expand="block" b type="submit">Cadastrar</ion-button>
+    <ion-button fill="outline" expand="block" b type="submit"
+      >{{atualizar ? 'Editar':'Cadastrar'}}</ion-button
+    >
   </form>
 </ion-content>

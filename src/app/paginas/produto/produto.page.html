@@ -9,7 +9,12 @@
   <ion-list>
     <ion-item-sliding *ngFor="let produto of produtos">
       <ion-item-options>
-        <ion-item-option color="danger" (click)="remover(produto.id)">Excluir</ion-item-option>
+        <ion-item-option color="danger" (click)="remover(produto.id)"
+          >Excluir</ion-item-option
+        >
+        <ion-item-option color="success" (click)="atualizar(produto)"
+          >Editar</ion-item-option
+        >
       </ion-item-options>
     </ion-item-sliding>
     <ion-item>{{produto.descricao}}</ion-item>
