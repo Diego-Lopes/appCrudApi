@@ -14,7 +14,7 @@ export class ClientePage implements OnInit {
   constructor(
     private service: ClienteService,
     private modalCtrl: ModalController
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.service.getAll().subscribe((resposta) => {
@@ -23,14 +23,14 @@ export class ClientePage implements OnInit {
   }
 
   remover(id: any) {
-    this.service.remove(id).subscribe(() => {
+    this.service.remover(id).subscribe(() => {
       this.service.getAll().subscribe((resposta) => {
         this.clientes = resposta;
       });
     });
   }
 
-  novoClient() {
+  novoCliente() {
     this.modalCtrl
       .create({
         component: ModalClientePage,
@@ -47,16 +47,19 @@ export class ClientePage implements OnInit {
   }
 
   atualizar(c: Cliente) {
-    this.modalCtrl.create({
-      component: ModalClientePage,
-      componentProps: { c }
-    }).then(modal => {
-      modal.present();
-      return modal.onDidDismiss();
-    }).then(({ data }) => {
-      this.service.getAll().subscribe(resposta => {
-        this.clientes = resposta;
+    this.modalCtrl
+      .create({
+        component: ModalClientePage,
+        componentProps: { c },
+      })
+      .then((modal) => {
+        modal.present();
+        return modal.onDidDismiss();
+      })
+      .then(({ data }) => {
+        this.service.getAll().subscribe((resposta) => {
+          this.clientes = resposta;
+        });
       });
-    });
   }
 }

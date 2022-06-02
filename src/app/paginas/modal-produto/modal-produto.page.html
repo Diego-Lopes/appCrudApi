@@ -15,8 +15,10 @@
       ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-labe position="floating">Valor</ion-labe>
+      <ion-label position="floating">Valor</ion-label>
       <ion-input [(ngModel)]="dadosProduto.valor" name="valor"></ion-input>
+      <!-- <ion-labe position="floating">Valor</ion-labe>
+      <ion-input [(ngModel)]="dadosProduto.valor" name="valor"></ion-input> -->
     </ion-item>
     <ion-button fill="outline" expand="block" b type="submit"
       >{{atualizar ? 'Editar':'Cadastrar'}}</ion-button

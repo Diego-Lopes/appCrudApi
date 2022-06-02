@@ -12,15 +12,15 @@ export interface Cliente {
   providedIn: 'root',
 })
 export class ClienteService {
-  private url = 'http://localhost/apiAppCrud/apiCliente';
+  private url = 'http://localhost/apiAppCrud/apiCliente.php';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll() {
     return this.http.get<[Cliente]>(this.url);
   }
 
-  remove(id: any) {
+  remover(id: any) {
     return this.http.delete(this.url + '?id=' + id);
   }
 

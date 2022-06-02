@@ -10,49 +10,55 @@ import { ModalProdutoPage } from '../modal-produto/modal-produto.page';
 })
 export class ProdutoPage implements OnInit {
   produtos: Produto[];
-  constructor(private service: ProdutoService, private modalCtrl: ModalController) { }
+  constructor(
+    private service: ProdutoService,
+    private modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
-    this.service.getAll().subscribe(resposta => {
+    this.service.getAll().subscribe((resposta) => {
       this.produtos = resposta;
     });
   }
 
-
   remover(id: any) {
-    this.service.remove(id).subscribe(() => {
-      this.service.getAll().subscribe(resposta => {
+    this.service.remover(id).subscribe(() => {
+      this.service.getAll().subscribe((resposta) => {
         this.produtos = resposta;
       });
     });
   }
-
 
   novoProduto() {
-    this.modalCtrl.create({
-      component: ModalProdutoPage
-    }).then(modal => {
-      modal.present();
-      return modal.onDidDismiss();
-    }).then(({ data }) => {
-      this.service.getAll().subscribe(resposta => {
-        this.produtos = resposta;
+    this.modalCtrl
+      .create({
+        component: ModalProdutoPage,
+      })
+      .then((modal) => {
+        modal.present();
+        return modal.onDidDismiss();
+      })
+      .then(({ data }) => {
+        this.service.getAll().subscribe((resposta) => {
+          this.produtos = resposta;
+        });
       });
-    });
   }
 
-
   atualizar(p: Produto) {
-    this.modalCtrl.create({
-      component: ModalProdutoPage,
-      componentProps: { p }
-    }).then(modal => {
-      modal.present();
-      return modal.onDidDismiss();
-    }).then(({ data }) => {
-      this.service.getAll().subscribe(resposta => {
-        this.produtos = resposta;
+    this.modalCtrl
+      .create({
+        component: ModalProdutoPage,
+        componentProps: { p },
+      })
+      .then((modal) => {
+        modal.present();
+        return modal.onDidDismiss();
+      })
+      .then(({ data }) => {
+        this.service.getAll().subscribe((resposta) => {
+          this.produtos = resposta;
+        });
       });
-    });
   }
 }

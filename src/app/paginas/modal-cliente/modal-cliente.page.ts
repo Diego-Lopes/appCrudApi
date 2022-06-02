@@ -9,24 +9,23 @@ import { Cliente, ClienteService } from 'src/app/servicos/cliente.service';
   styleUrls: ['./modal-cliente.page.scss'],
 })
 export class ModalClientePage implements OnInit {
-
   @Input() c: Cliente;
   atualizar = false;
   dadosCliente = {
     nome: '',
     telefone: '',
-    endereco: ''
+    endereco: '',
   };
 
   constructor(
     private modalCtrl: ModalController,
     private service: ClienteService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.c) {
-      this.dadosCliente = this.c;
       this.atualizar = true;
+      this.dadosCliente = this.c;
     }
   }
 
@@ -38,7 +37,7 @@ export class ModalClientePage implements OnInit {
     const cliente = form.value;
 
     if (this.atualizar) {
-      this.service.update(cliente, this.c.id).subscribe(resposta => {
+      this.service.update(cliente, this.c.id).subscribe((resposta) => {
         this.modalCtrl.dismiss(resposta);
       });
     } else {
@@ -47,6 +46,4 @@ export class ModalClientePage implements OnInit {
       });
     }
   }
-
-
 }
