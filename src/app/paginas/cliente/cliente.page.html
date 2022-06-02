@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-button slot="end" (click)="novoCliente()">Novo Cliente</ion-button>
-    <ion-title>Página de Cliente</ion-title>
+    <ion-button slot="end" (click)="novoCliente()">New Contact</ion-button>
+    <ion-title>List of Contacts</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,13 +10,17 @@
     <ion-item-sliding *ngFor="let cliente of clientes">
       <ion-item-options>
         <ion-item-option color="danger" (click)="remover(cliente.id)"
-          >Excluir</ion-item-option
+          >Delete</ion-item-option
         >
         <ion-item-option color="success" (click)="atualizar(cliente)"
-          >Editar</ion-item-option
+          >Edit</ion-item-option
         >
       </ion-item-options>
-      <ion-item>{{cliente.nome}}</ion-item>
+      <ion-item>
+        <ion-label>{{cliente.nome}}</ion-label>
+        <ion-label>{{cliente.endereco}}</ion-label>
+        {{cliente.telefone}}
+      </ion-item>
     </ion-item-sliding>
   </ion-list>
 </ion-content>
